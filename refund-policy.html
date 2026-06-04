@@ -15,10 +15,110 @@
 </nav>
 
 <main><section class="card">
+  <div class="legal-lang" data-lang="tr">
 <p class="badge">Last updated: 29 May 2026</p><h2>İade ve İptal Politikası</h2><p>Vitalvibe abonelikleri ve satın alma işlemleri Google Play üzerinden yönetilir.</p>
 <h3>İptal</h3><p>Aboneliğinizi Google Play hesabınızdaki abonelikler bölümünden iptal edebilirsiniz. Uygulamayı silmek aboneliği otomatik olarak iptal etmeyebilir.</p>
-<h3>İade</h3><p>İade talepleri Google Play politikalarına tabidir. Geçmiş ödemelerin iadesi Vitalvibe tarafından doğrudan garanti edilmez.</p>
-<div class="lang"><h2>Refund & Cancellation Summary in English</h2><p>Subscriptions are managed through Google Play. Refunds are subject to Google Play policies. Deleting the app may not cancel the subscription.</p></div>
+    <h3>İade</h3><p>İade talepleri Google Play politikalarına tabidir. Geçmiş ödemelerin iadesi Vitalvibe tarafından doğrudan garanti edilmez.</p>
+</div>
+    <div class="legal-lang" data-lang="en">><h2>Refund & Cancellation Summary in English</h2><p>Subscriptions are managed through Google Play. Refunds are subject to Google Play policies. Deleting the app may not cancel the subscription.</p></div>
+</div>
+  <div class="legal-lang" data-lang="fr">
+  <p class="badge">Dernière mise à jour : 29 mai 2026</p>
+  <h2>Remboursement et annulation</h2>
+  <p>Cette page explique les règles de remboursement et d’annulation pour les abonnements Premium de Vitalvibe.</p>
+
+  <h3>Annulation</h3>
+  <p>Vous pouvez annuler votre abonnement depuis les paramètres d’abonnement de votre compte Google Play.</p>
+
+  <h3>Remboursements</h3>
+  <p>Les demandes de remboursement sont traitées conformément aux règles de Google Play. Les paiements précédents peuvent ne pas être automatiquement remboursés après l’annulation.</p>
+
+  <h3>Abonnements</h3>
+  <p>Les abonnements peuvent rester actifs jusqu’à la fin de la période déjà payée.</p>
+
+  <h3>Contact</h3>
+  <p>Pour toute question, contactez : <a href="mailto:support.vitalvibe@gmail.com">support.vitalvibe@gmail.com</a></p>
+</div>
 </section></main>
+
+
 <footer>© 2026 Vitalvibe · Developer: Emre Çakmak · <a href="mailto:support.vitalvibe@gmail.com">support.vitalvibe@gmail.com</a></footer>
+<script>
+  const supportedLanguages = ['tr', 'en', 'fr', 'de', 'nl', 'es', 'ar'];
+  const params = new URLSearchParams(window.location.search);
+  const requestedLang = params.get('lang') || 'tr';
+  const lang = supportedLanguages.includes(requestedLang) ? requestedLang : 'en';
+
+  const pageText = {
+    tr: {
+      title: 'İade ve İptal',
+      subtitle: 'Vitalvibe yasal ve uyumluluk bilgileri',
+      privacy: 'Gizlilik Politikası',
+      terms: 'Kullanım Şartları',
+      subscription: 'Abonelik Şartları',
+      refund: 'İade ve İptal',
+      health: 'Sağlık & AI Uyarısı',
+      deletion: 'Hesap Silme',
+      contact: 'İletişim'
+    },
+    en: {
+      title: 'Refund and Cancellation',
+      subtitle: 'Vitalvibe legal and compliance information',
+      privacy: 'Privacy Policy',
+      terms: 'Terms of Use',
+      subscription: 'Subscription Terms',
+      refund: 'Refund and Cancellation',
+      health: 'Health & AI Disclaimer',
+      deletion: 'Delete Account',
+      contact: 'Contact'
+    },
+    fr: {
+      title: 'Remboursement et annulation',
+      subtitle: 'Informations légales et de conformité de Vitalvibe',
+      privacy: 'Politique de confidentialité',
+      terms: 'Conditions d’utilisation',
+      subscription: 'Conditions d’abonnement',
+      refund: 'Remboursement et annulation',
+      health: 'Avertissement santé & IA',
+      deletion: 'Suppression du compte',
+      contact: 'Contact'
+    }
+  };
+
+  const text = pageText[lang] || pageText.en;
+
+  const h1 = document.querySelector('header h1');
+  const subtitle = document.querySelector('header .subtitle');
+  const navLinks = document.querySelectorAll('nav a');
+
+  if (h1) h1.textContent = text.title;
+  if (subtitle) subtitle.textContent = text.subtitle;
+
+  if (navLinks[0]) navLinks[0].textContent = text.privacy;
+  if (navLinks[1]) navLinks[1].textContent = text.terms;
+  if (navLinks[2]) navLinks[2].textContent = text.subscription;
+  if (navLinks[3]) navLinks[3].textContent = text.refund;
+  if (navLinks[4]) navLinks[4].textContent = text.health;
+  if (navLinks[5]) navLinks[5].textContent = text.deletion;
+  if (navLinks[6]) navLinks[6].textContent = text.contact;
+
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href && href.endsWith('.html')) {
+      link.setAttribute('href', href + '?lang=' + lang);
+    }
+  });
+
+  document.querySelectorAll('.legal-lang').forEach(section => {
+    section.style.display = 'none';
+  });
+
+  const activeSection = document.querySelector('.legal-lang[data-lang="' + lang + '"]');
+  if (activeSection) {
+    activeSection.style.display = 'block';
+  }
+
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+</script>
 </body></html>
