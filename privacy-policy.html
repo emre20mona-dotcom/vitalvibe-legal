@@ -15,6 +15,7 @@
 </nav>
 
 <main><section class="card">
+  <div class="legal-lang" data-lang="tr">
 <p class="badge">Last updated: 29 May 2026</p>
 <h2>Gizlilik Politikası</h2>
 <p>Vitalvibe, sağlıklı alışkanlıklar, su takibi, öğün takibi, kalori/makro tahminleri, adım hedefleri, uyku ve yapay zeka destekli wellness önerileri sunan bir yaşam tarzı uygulamasıdır.</p>
@@ -29,6 +30,65 @@
 <h3>Veri saklama ve silme</h3><p>Hesap ve uygulama verileri, hesabın aktif olduğu süre boyunca veya uygulama işlevleri için gerekli olduğu sürece saklanabilir. Hesap/veri silme talebi için Hesap Silme sayfasını kullanabilirsiniz.</p>
 <h3>İletişim</h3><p>Gizlilik soruları için: <a href="mailto:support.vitalvibe@gmail.com">support.vitalvibe@gmail.com</a></p>
 <div class="lang"><h2>Privacy Policy Summary in English</h2><p>Vitalvibe may process account data, app preferences, wellness tracking data, subscription status, AI Coach messages, and food photos submitted for AI analysis. Vitalvibe uses Firebase Authentication, RevenueCat, Google Play Billing, and Google Gemini API. Data is not sold to advertisers. AI outputs are approximate wellness guidance only and are not medical advice. Contact: <a href="mailto:support.vitalvibe@gmail.com">support.vitalvibe@gmail.com</a>.</p></div>
+</div>
+<div class="legal-lang" data-lang="en">
+  <p class="badge">Last updated: 29 May 2026</p>
+  <h2>Privacy Policy</h2>
+  <p>Vitalvibe is a wellness and habit tracking app. It helps users track water intake, meals, calories, daily goals, sleep, reminders and AI-supported wellness features.</p>
+
+  <h3>Data we collect or process</h3>
+  <ul>
+    <li>Account information such as email address, Firebase user ID, login and email verification status.</li>
+    <li>App preferences such as language, premium/subscription status and app settings.</li>
+    <li>Wellness tracking data such as water, meals, calories, goals, sleep and reminder settings.</li>
+    <li>Food photos and AI outputs if the user chooses to use AI analysis features.</li>
+  </ul>
+
+  <h3>Third-party services</h3>
+  <p>Vitalvibe may use Firebase Authentication, Firebase services, RevenueCat, Google Play Billing and AI services for app functionality, subscriptions and analysis features.</p>
+
+  <h3>Data sharing and sale</h3>
+  <p>Vitalvibe does not sell user personal data to advertisers.</p>
+
+  <h3>Contact</h3>
+  <p>For privacy questions, contact: <a href="mailto:support.vitalvibe@gmail.com">support.vitalvibe@gmail.com</a></p>
+</div>
+
+<div class="legal-lang" data-lang="fr">
+  <p class="badge">Dernière mise à jour : 29 mai 2026</p>
+  <h2>Politique de confidentialité</h2>
+  <p>Vitalvibe est une application de bien-être et de suivi des habitudes. Elle aide les utilisateurs à suivre l’eau, les repas, les calories, les objectifs quotidiens, le sommeil, les rappels et les fonctionnalités de bien-être assistées par IA.</p>
+
+  <h3>Données que nous collectons ou traitons</h3>
+  <ul>
+    <li>Informations du compte, comme l’adresse e-mail, l’identifiant utilisateur Firebase, la connexion et l’état de vérification de l’e-mail.</li>
+    <li>Préférences de l’application, comme la langue, le statut premium/abonnement et les paramètres de l’application.</li>
+    <li>Données de suivi du bien-être, comme l’eau, les repas, les calories, les objectifs, le sommeil et les paramètres de rappel.</li>
+    <li>Photos d’aliments et résultats IA si l’utilisateur choisit d’utiliser les fonctions d’analyse IA.</li>
+  </ul>
+
+  <h3>Services tiers</h3>
+  <p>Vitalvibe peut utiliser Firebase Authentication, les services Firebase, RevenueCat, Google Play Billing et des services d’IA pour le fonctionnement de l’application, les abonnements et les fonctions d’analyse.</p>
+
+  <h3>Partage et vente des données</h3>
+  <p>Vitalvibe ne vend pas les données personnelles des utilisateurs aux annonceurs.</p>
+
+  <h3>Contact</h3>
+  <p>Pour toute question concernant la confidentialité, contactez : <a href="mailto:support.vitalvibe@gmail.com">support.vitalvibe@gmail.com</a></p>
+</div>
 </section></main>
 <footer>© 2026 Vitalvibe · Developer: Emre Çakmak · <a href="mailto:support.vitalvibe@gmail.com">support.vitalvibe@gmail.com</a></footer>
+<script>
+  const supportedLanguages = ['tr', 'en', 'fr', 'de', 'nl', 'es', 'ar'];
+  const params = new URLSearchParams(window.location.search);
+  const requestedLang = params.get('lang') || 'tr';
+  const lang = supportedLanguages.includes(requestedLang) ? requestedLang : 'en';
+
+  document.querySelectorAll('.legal-lang').forEach(section => {
+    section.style.display = section.dataset.lang === lang ? 'block' : 'none';
+  });
+
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+</script>
 </body></html>
