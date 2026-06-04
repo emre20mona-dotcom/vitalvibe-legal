@@ -83,7 +83,64 @@
   const params = new URLSearchParams(window.location.search);
   const requestedLang = params.get('lang') || 'tr';
   const lang = supportedLanguages.includes(requestedLang) ? requestedLang : 'en';
+const pageText = {
+  tr: {
+    title: 'Gizlilik Politikası',
+    subtitle: 'Vitalvibe yasal ve uyumluluk bilgileri',
+    privacy: 'Gizlilik Politikası',
+    terms: 'Kullanım Şartları',
+    subscription: 'Abonelik Şartları',
+    refund: 'İade ve İptal',
+    health: 'Sağlık & AI Uyarısı',
+    deletion: 'Hesap Silme',
+    contact: 'İletişim'
+  },
+  en: {
+    title: 'Privacy Policy',
+    subtitle: 'Vitalvibe legal and compliance information',
+    privacy: 'Privacy Policy',
+    terms: 'Terms of Use',
+    subscription: 'Subscription Terms',
+    refund: 'Refund and Cancellation',
+    health: 'Health & AI Disclaimer',
+    deletion: 'Delete Account',
+    contact: 'Contact'
+  },
+  fr: {
+    title: 'Politique de confidentialité',
+    subtitle: 'Informations légales et de conformité de Vitalvibe',
+    privacy: 'Politique de confidentialité',
+    terms: 'Conditions d’utilisation',
+    subscription: 'Conditions d’abonnement',
+    refund: 'Remboursement et annulation',
+    health: 'Avertissement santé & IA',
+    deletion: 'Suppression du compte',
+    contact: 'Contact'
+  }
+};
 
+const text = pageText[lang] || pageText.en;
+
+const h1 = document.querySelector('header h1');
+const subtitle = document.querySelector('header .subtitle');
+const navLinks = document.querySelectorAll('nav a');
+
+if (h1) h1.textContent = text.title;
+if (subtitle) subtitle.textContent = text.subtitle;
+
+if (navLinks[0]) navLinks[0].textContent = text.privacy;
+if (navLinks[1]) navLinks[1].textContent = text.terms;
+if (navLinks[2]) navLinks[2].textContent = text.subscription;
+if (navLinks[3]) navLinks[3].textContent = text.refund;
+if (navLinks[4]) navLinks[4].textContent = text.health;
+if (navLinks[5]) navLinks[5].textContent = text.deletion;
+if (navLinks[6]) navLinks[6].textContent = text.contact;
+  navLinks.forEach(link => {
+  const href = link.getAttribute('href');
+  if (href && href.endsWith('.html')) {
+    link.setAttribute('href', href + '?lang=' + lang);
+  }
+});
   document.querySelectorAll('.legal-lang').forEach(section => {
     section.style.display = section.dataset.lang === lang ? 'block' : 'none';
   });
