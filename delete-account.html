@@ -23,6 +23,106 @@
 <h3>Saklanabilecek bazı kayıtlar</h3><p>Google Play, RevenueCat veya ödeme sağlayıcıları tarafından tutulan bazı satın alma/abonelik kayıtları yasal, güvenlik veya teknik nedenlerle bizim dışımızda saklanabilir.</p>
 </div>
    <div class="legal-lang" data-lang="en"><h2>Account & Data Deletion Summary in English</h2><p>To request deletion of your Vitalvibe account and associated app data, email <a href="mailto:support.vitalvibe@gmail.com">support.vitalvibe@gmail.com</a> with your account email and request details.</p></div>
+</div>
+
+<div class="legal-lang" data-lang="fr">
+  <p class="badge">Dernière mise à jour : 29 mai 2026</p>
+  <h2>Suppression du compte</h2>
+  <p>Vous pouvez demander la suppression de votre compte Vitalvibe et des données associées.</p>
+
+  <h3>Comment demander la suppression</h3>
+  <p>Envoyez un e-mail à <a href="mailto:support.vitalvibe@gmail.com">support.vitalvibe@gmail.com</a> avec pour objet : Demande de suppression du compte Vitalvibe.</p>
+
+  <h3>Informations à inclure</h3>
+  <ul>
+    <li>L’adresse e-mail utilisée dans l’application</li>
+    <li>Une courte demande de suppression du compte</li>
+  </ul>
+
+  <h3>Données supprimées</h3>
+  <p>Les données liées au compte, telles que les préférences de l’application et les données de suivi du bien-être, peuvent être supprimées lorsque cela est applicable.</p>
+
+  <h3>Données pouvant être conservées</h3>
+  <p>Certaines données peuvent être conservées si cela est nécessaire pour des obligations légales, de sécurité ou de facturation.</p>
+</div>
 </section></main>
 <footer>© 2026 Vitalvibe · Developer: Emre Çakmak · <a href="mailto:support.vitalvibe@gmail.com">support.vitalvibe@gmail.com</a></footer>
+<script>
+  const supportedLanguages = ['tr', 'en', 'fr', 'de', 'nl', 'es', 'ar'];
+  const params = new URLSearchParams(window.location.search);
+  const requestedLang = params.get('lang') || 'tr';
+  const lang = supportedLanguages.includes(requestedLang) ? requestedLang : 'en';
+
+  const pageText = {
+    tr: {
+      title: 'Hesap Silme',
+      subtitle: 'Vitalvibe yasal ve uyumluluk bilgileri',
+      privacy: 'Gizlilik Politikası',
+      terms: 'Kullanım Şartları',
+      subscription: 'Abonelik Şartları',
+      refund: 'İade ve İptal',
+      health: 'Sağlık & AI Uyarısı',
+      deletion: 'Hesap Silme',
+      contact: 'İletişim'
+    },
+    en: {
+      title: 'Delete Account',
+      subtitle: 'Vitalvibe legal and compliance information',
+      privacy: 'Privacy Policy',
+      terms: 'Terms of Use',
+      subscription: 'Subscription Terms',
+      refund: 'Refund and Cancellation',
+      health: 'Health & AI Disclaimer',
+      deletion: 'Delete Account',
+      contact: 'Contact'
+    },
+    fr: {
+      title: 'Suppression du compte',
+      subtitle: 'Informations légales et de conformité de Vitalvibe',
+      privacy: 'Politique de confidentialité',
+      terms: 'Conditions d’utilisation',
+      subscription: 'Conditions d’abonnement',
+      refund: 'Remboursement et annulation',
+      health: 'Avertissement santé & IA',
+      deletion: 'Suppression du compte',
+      contact: 'Contact'
+    }
+  };
+
+  const text = pageText[lang] || pageText.en;
+
+  const h1 = document.querySelector('header h1');
+  const subtitle = document.querySelector('header .subtitle');
+  const navLinks = document.querySelectorAll('nav a');
+
+  if (h1) h1.textContent = text.title;
+  if (subtitle) subtitle.textContent = text.subtitle;
+
+  if (navLinks[0]) navLinks[0].textContent = text.privacy;
+  if (navLinks[1]) navLinks[1].textContent = text.terms;
+  if (navLinks[2]) navLinks[2].textContent = text.subscription;
+  if (navLinks[3]) navLinks[3].textContent = text.refund;
+  if (navLinks[4]) navLinks[4].textContent = text.health;
+  if (navLinks[5]) navLinks[5].textContent = text.deletion;
+  if (navLinks[6]) navLinks[6].textContent = text.contact;
+
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href && href.endsWith('.html')) {
+      link.setAttribute('href', href + '?lang=' + lang);
+    }
+  });
+
+  document.querySelectorAll('.legal-lang').forEach(section => {
+    section.style.display = 'none';
+  });
+
+  const activeSection = document.querySelector('.legal-lang[data-lang="' + lang + '"]');
+  if (activeSection) {
+    activeSection.style.display = 'block';
+  }
+
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+</script>
 </body></html>
