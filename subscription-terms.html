@@ -113,8 +113,13 @@
   });
 
   document.querySelectorAll('.legal-lang').forEach(section => {
-    section.style.display = section.dataset.lang === lang ? 'block' : 'none';
-  });
+  section.style.display = 'none';
+});
+
+const activeSection = document.querySelector('.legal-lang[data-lang="' + lang + '"]');
+if (activeSection) {
+  activeSection.style.display = 'block';
+}
 
   document.documentElement.lang = lang;
   document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
